@@ -72,7 +72,7 @@ function StrategyListScreen(props) {
             Profil prudent <Octicons name="question" size={16} color="black" />
           </Text>
 
-          // Popup
+          {/* // Popup */}
           <Overlay
             isVisible={ visiblePrudent }
             onBackdropPress={ toggleOverlayPrudent }
@@ -100,7 +100,7 @@ function StrategyListScreen(props) {
 
           {/* ----------------------------- First Wallet ---------------------------- */}
 
-          // Wallet Name
+          {/* // Wallet Name */}
           <View style={ styles.profilContainer }>
             <Text style={ styles.portefeuil }>{ profilName[0] }</Text>
             <Button
@@ -129,7 +129,7 @@ function StrategyListScreen(props) {
           Profil équilibré <Octicons name="question" size={16} color="black" />
         </Text>
 
-        // Popup
+        {/* // Popup */}
         <Overlay
           isVisible={ visibleEquilibre }
           onBackdropPress={ toggleOverlayEquilibre }
@@ -157,7 +157,7 @@ function StrategyListScreen(props) {
 
         {/* ----------------------------- Second Wallet ---------------------------- */}
 
-        // Wallet Name
+        {/* // Wallet Name */}
         <View style={ styles.profilContainer }>
           <Text style={ styles.portefeuil }>{ profilName[1] }</Text>
           <Button
@@ -186,7 +186,7 @@ function StrategyListScreen(props) {
           Profil audacieux <Octicons name="question" size={16} color="black" />
         </Text>
 
-        // Popup
+        {/* // Popup */}
         <Overlay
           isVisible={ visibleAudacieux }
           onBackdropPress={ toggleOverlayAudacieux }
@@ -214,7 +214,7 @@ function StrategyListScreen(props) {
 
         {/* ----------------------------- Third Wallet ---------------------------- */}
 
-        // Wallet Name
+        {/* // Wallet Name */}
         <View style={ styles.profilContainer }>
           <Text style={ styles.portefeuil }>{ profilName[2] }</Text>
           <Button
@@ -247,7 +247,7 @@ function StrategyListScreen(props) {
       <Text style={styles.title}>(Sélection manuelle)</Text>
       <Divider style={{ backgroundColor: 'gray', marginTop: 30 }} />
 
-      // Select Strategy
+      {/* // Select Strategy */}
       <RNPickerSelect
         placeholder={{
           label: 'Select Stratégie...',
@@ -271,7 +271,7 @@ function StrategyListScreen(props) {
         Voir détails stratégie
       </Text>
 
-      // Popup
+      {/* // Popup */}
       <Overlay
         isVisible={ visibleStrategy }
         onBackdropPress={ toggleOverlayStrategy }
