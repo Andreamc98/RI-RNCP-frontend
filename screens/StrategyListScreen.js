@@ -3,7 +3,8 @@ import RNPickerSelect from 'react-native-picker-select'
 import { connect } from 'react-redux'
 import { Octicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native'
-import { Header, Button, Divider, Overlay } from 'react-native-elements'
+import { Header, Button, Divider, Overlay, Card } from 'react-native-elements'
+import { AntDesign } from '@expo/vector-icons';
 
 function StrategyListScreen(props) {
   const [visibleStrategy, setVisibleStrategy] = useState(false)
@@ -13,7 +14,6 @@ function StrategyListScreen(props) {
 
   const [strategyValue, setStrategyValue] = useState('')
   const [profilName, setProfilName] = useState([])
-  const [uniqueName, setUniqueName] = useState('')
 
   // Show or Hide Strategy Popup
   const toggleOverlayStrategy = () => {
@@ -46,7 +46,6 @@ function StrategyListScreen(props) {
     const body = await dataStrategy.json()
 
     // Send Wallet Name to Redux Store
-    props.onSave(uniqueName)
     setProfilName(body.profilName)
   }
 
@@ -64,8 +63,9 @@ function StrategyListScreen(props) {
       <View>
           <Text
             style={{
-              marginTop: 50,
-              marginBottom: 10
+              marginTop: 10,
+              marginBottom: 10,
+              fontSize: 12,
             }}
             onPress={ toggleOverlayPrudent }
           >
@@ -81,7 +81,8 @@ function StrategyListScreen(props) {
               height: 300,
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              borderRadius: 10, 
             }}
           >
             <Text>Profil PRUDENT</Text>
@@ -89,10 +90,11 @@ function StrategyListScreen(props) {
             <Button
               title="OK"
               buttonStyle={{
-                width: 80,
+                width: 60,
                 height: 50,
                 marginTop: 40,
-                backgroundColor: '#e1191d'
+                backgroundColor: '#e1191d',
+                borderRadius: 20, 
               }}
               onPress={ toggleOverlayPrudent }
             />
@@ -103,18 +105,27 @@ function StrategyListScreen(props) {
           {/* // Wallet Name */}
           <View style={ styles.profilContainer }>
             <Text style={ styles.portefeuil }>{ profilName[0] }</Text>
-            <Button
+            {/* <Button
               title="détails"
               buttonStyle={{
                 backgroundColor: '#e1191d',
                 width: 80,
-                height: 50
+                height: 50,
+                borderRadius: 10,
               }}
               onPress={ () => {
                 props.navigation.navigate('PortfolioScreen');
                 handleUniqueName(profilName[0])
               }}
-            />
+            /> */}
+            <AntDesign style={{marginLeft: 3}}
+                name="rightsquare" 
+                size={50} 
+                color="#e1191d" 
+                onPress={ () => { props.navigation.navigate('PortfolioScreen');
+                                  handleUniqueName(profilName[0])
+                                }}
+                />
           </View>
         </View>
 
@@ -122,7 +133,8 @@ function StrategyListScreen(props) {
         <Text
           style={{
             marginTop: 20,
-            marginBottom: 10
+            marginBottom: 10,
+            fontSize: 12,
           }}
           onPress={ toggleOverlayEquilibre }
         >
@@ -138,7 +150,8 @@ function StrategyListScreen(props) {
             height: 300,
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            borderRadius: 10, 
           }}
         >
           <Text>Profil EQUILIBRE</Text>
@@ -146,10 +159,11 @@ function StrategyListScreen(props) {
           <Button
             title="OK"
             buttonStyle={{
-              width: 80,
+              width: 60,
               height: 50,
               marginTop: 40,
-              backgroundColor: '#e1191d'
+              backgroundColor: '#e1191d',
+              borderRadius: 20, 
             }}
             onPress={ toggleOverlayEquilibre }
           />
@@ -160,7 +174,7 @@ function StrategyListScreen(props) {
         {/* // Wallet Name */}
         <View style={ styles.profilContainer }>
           <Text style={ styles.portefeuil }>{ profilName[1] }</Text>
-          <Button
+          {/* <Button
             title="détails"
             buttonStyle={{
               backgroundColor: '#e1191d',
@@ -171,6 +185,14 @@ function StrategyListScreen(props) {
                 props.navigation.navigate('PortfolioScreen');
                 handleUniqueName(profilName[1])
               }}
+          /> */}
+          <AntDesign style={{marginLeft: 3}}
+                name="rightsquare" 
+                size={50} 
+                color="#e1191d" 
+                onPress={ () => { props.navigation.navigate('PortfolioScreen');
+                                  handleUniqueName(profilName[0])
+                                }}
           />
         </View>
       </View>
@@ -179,7 +201,8 @@ function StrategyListScreen(props) {
         <Text
           style={{
             marginTop: 20,
-            marginBottom: 10
+            marginBottom: 10,
+            fontSize: 12,
           }}
           onPress={ toggleOverlayAudacieux }
         >
@@ -195,7 +218,8 @@ function StrategyListScreen(props) {
             height: 300,
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            borderRadius: 10, 
           }}
         >
           <Text>Profil AUDACIEUX</Text>
@@ -203,10 +227,11 @@ function StrategyListScreen(props) {
           <Button
             title="OK"
             buttonStyle={{
-              width: 80,
+              width: 60,
               height: 50,
               marginTop: 40,
-              backgroundColor: '#e1191d'
+              backgroundColor: '#e1191d',
+              borderRadius: 20, 
             }}
             onPress={ toggleOverlayAudacieux }
           />
@@ -217,7 +242,7 @@ function StrategyListScreen(props) {
         {/* // Wallet Name */}
         <View style={ styles.profilContainer }>
           <Text style={ styles.portefeuil }>{ profilName[2] }</Text>
-          <Button
+          {/* <Button
             title="détails"
             buttonStyle={{
               backgroundColor: '#e1191d',
@@ -228,29 +253,50 @@ function StrategyListScreen(props) {
                 props.navigation.navigate('PortfolioScreen');
                 handleUniqueName(profilName[2])
               }}
+          /> */}
+          <AntDesign style={{marginLeft: 3}}
+                name="rightsquare" 
+                size={50} 
+                color="#e1191d" 
+                onPress={ () => { props.navigation.navigate('PortfolioScreen');
+                                  handleUniqueName(profilName[0])
+                                }}
           />
         </View>
       </View>
     </View>
   }
 
+  var detailStrategy;
+  if (strategyValue === 'active' || strategyValue === 'passive'){
+    detailStrategy = <Text
+                        style={ styles.text }
+                        onPress={ toggleOverlayStrategy }
+                      >
+                      Détails stratégie <Octicons name="question" size={16} color="black" />
+                    </Text>
+  } else {
+    detailStrategy = <Text>{"\n"}</Text>
+  }
+
   return (
     <View style={ styles.container }>
 
-      <Header
-        containerStyle={{ backgroundColor: '#2c2c2c' }}
-        leftComponent={<Button title='Mes Favoris' buttonStyle={{ width: 130, color: '#fff', backgroundColor: '#2c2c2c' }} onPress={() => props.navigation.navigate('WishListScreen')} />}
-        rightComponent={<Button title='Déconnexion' buttonStyle={{ width: 130, color: '#fff', backgroundColor: '#2c2c2c' }} onPress={() => {props.addToken(null); props.navigation.navigate('HomePageScreen')}} />}
+      <Header containerStyle={{ backgroundColor: '#A1A1A1' }}
+        leftComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="home" size={33} color="black"
+                      onPress={() => props.navigation.navigate('DashboardScreen')} />}
+        centerComponent={{ text: 'STRATEGIES', style: { color: '#fff', fontSize: 16, marginTop: 10 } }}
+        rightComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="logout" size={30} color="black"
+                      onPress={() => {props.addToken(null); props.navigation.navigate('HomePageScreen')}} />}
       />
 
-      <Text style={styles.title, { marginTop: 20 }}>Liste des Stratégies</Text>
-      <Text style={styles.title}>(Sélection manuelle)</Text>
-      <Divider style={{ backgroundColor: 'gray', marginTop: 30 }} />
+      <Text style={styles.title, { fontSize: 20, fontWeight: "bold", marginTop: 20 }}>Sélectionner une stratégie</Text>
+      <Divider style={{ backgroundColor: 'gray', marginTop: 20 }} />
 
       {/* // Select Strategy */}
       <RNPickerSelect
         placeholder={{
-          label: 'Select Stratégie...',
+          label: 'Sélection...',
           value: 'null'
         }}
         style={{ ...pickerSelectStyles }}
@@ -264,12 +310,7 @@ function StrategyListScreen(props) {
         ]}
       />
 
-      <Text
-        style={ styles.text }
-        onPress={ toggleOverlayStrategy }
-      >
-        Voir détails stratégie
-      </Text>
+      {detailStrategy}
 
       {/* // Popup */}
       <Overlay
@@ -280,7 +321,8 @@ function StrategyListScreen(props) {
           height: 300,
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          borderRadius: 10, 
         }}
       >
         <Text>Stratégie { strategyValue.toUpperCase() }</Text>
@@ -294,21 +336,24 @@ function StrategyListScreen(props) {
         <Button
           title="OK"
           buttonStyle={{
-            width: 80,
+            width: 60,
             height: 50,
             marginTop: 40,
-            backgroundColor: '#e1191d'
+            backgroundColor: '#e1191d',
+            borderRadius: 20, 
           }}
           onPress={ toggleOverlayStrategy }
         />
       </Overlay>
-
+      
+      <Card containerStyle={{ borderRadius: 10, width: 340, height: 350, marginBottom: 40, alignItems:"center" }}>
       { strategySelected }
+      </Card>
 
       <Button
-        buttonStyle={{ backgroundColor: '#fff', width: 200, height: 50, alignSelf: 'center', borderColor: 'black', marginTop: 50 }}
+        buttonStyle={{ borderRadius: 20, backgroundColor: '#fff', width: 300, height: 50, alignSelf: 'center', borderColor: '#e1191d', marginTop: 10 }}
         title="Retour"
-        titleStyle={{ color: 'black' }}
+        titleStyle={{ color: '#e1191d' }}
         type="outline"
         onPress={ () => props.navigation.navigate('WishListScreen') }
       />
@@ -323,16 +368,18 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#E7E6E6',
   },
   title: {
     textAlign: 'center',
   },
   text: {
     marginTop: 10,
-    color: 'blue',
+    marginBottom: 20,
+    color: 'black',
     textAlign: 'left',
-    fontSize: 16,
+    fontSize: 14,
   },
   profilContainer: {
     display: 'flex',
@@ -340,18 +387,21 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   portefeuil: {
-    width: '73%',
+    width: '80%',
     borderWidth: 1,
     borderColor: 'black',
-    fontSize: 18,
+    fontSize: 15,
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
     color: '#e1191d',
-    textAlign: 'center'
+    textAlign: 'center',
+    alignSelf: "center",
+    borderRadius: 10,
   },
   message: {
-    marginTop: 130,
+    marginTop: 140,
+    justifyContent: "center",
     fontSize: 16,
     fontWeight: 'bold'
   },
@@ -363,17 +413,18 @@ const styles = StyleSheet.create({
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    fontSize: 18,
+    fontSize: 16,
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
     marginTop: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 37,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#e1191d',
     backgroundColor: 'white',
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
+    borderRadius: 20,
   },
 })
 

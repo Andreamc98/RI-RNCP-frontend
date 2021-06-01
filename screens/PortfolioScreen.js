@@ -9,6 +9,7 @@ import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import { LineChart } from "react-native-chart-kit";
+import { AntDesign } from '@expo/vector-icons';
 
 function PortfolioScreen(props) {
   // ---------------------------- Déclaration des états ---------------------------- //
@@ -85,7 +86,7 @@ function PortfolioScreen(props) {
   if(ButtonIsValid && isFocused){
     // le portefeuille est deja enregistré ==> retour à mes favoris
     ButtonVisible = <Button containerStyle={{ marginTop: 20, alignItems: 'center' }}
-                    buttonStyle={{ backgroundColor: "#5DC803", marginBottom: 15, alignItems: 'baseline', width: 300, height: 50, alignSelf: 'center' }}
+                    buttonStyle={{ borderRadius: 20, backgroundColor: "#5DC803", marginBottom: 15, alignItems: 'baseline', width: 300, height: 50, alignSelf: 'center' }}
                     icon={{
                       name: "check-circle",
                       size: 30,
@@ -100,7 +101,7 @@ function PortfolioScreen(props) {
   } else {
     // le portefeuille n'est pas enregistré ==> on enregistre + on fais apparaitre le popup de confirmation d'enregistrement
     ButtonVisible = <Button containerStyle={{ marginTop: 20, alignItems: 'center' }}
-                    buttonStyle={{ backgroundColor: "#e1191d", marginBottom: 15, alignItems: 'baseline', width: 300, height: 50, alignSelf: 'center' }}
+                    buttonStyle={{ borderRadius: 20, backgroundColor: "#e1191d", marginBottom: 15, alignItems: 'baseline', width: 300, height: 50, alignSelf: 'center' }}
                     icon={{
                       name: "star",
                       size: 30,
@@ -121,7 +122,7 @@ function PortfolioScreen(props) {
   if (dataBDD && dataBDD.strategy === "passive" && isFocused) {
 
     // Si la stratégie est "Passive", affichage personnalisé pour ce typologie de stratégie
-    passif = <Card containerStyle={{ marginTop: 15, marginBottom: 30}}>
+    passif = <Card containerStyle={{ borderRadius: 10, marginTop: 15, marginBottom: 30}}>
       <Text style={{ fontSize: 16, fontWeight: "bold" }}>Composition du portefeuille : {"\n"}</Text>
 
       {dataBDD.actifs.map((data, i) => {  //lecture en BDD du tableau de données pour affichage
@@ -139,7 +140,7 @@ function PortfolioScreen(props) {
   } else if (dataBDD.strategy === "active") {
 
     // Si la stratégie est "Active", affichage personnalisé pour ce typologie de stratégie
-    actif = <Card containerStyle={{ marginTop: 15, marginBottom: 30}}>
+    actif = <Card containerStyle={{ borderRadius: 10, marginTop: 15, marginBottom: 30}}>
       <Text style={{ fontSize: 16, fontWeight: "bold" }}>Mois en cours : {"\n"}Du 01/05/21 au 30/05/21 {"\n"}</Text>
       <Text style={{ fontSize: 16, fontWeight: "bold" }}>Composition du portefeuille : {"\n"}</Text>
 
@@ -247,7 +248,7 @@ function PortfolioScreen(props) {
               bezier
               style={{
                 marginVertical: 4,
-                borderRadius: 1,
+                borderRadius: 5,
                 alignSelf: 'center'
               }}
             />
@@ -260,27 +261,29 @@ function PortfolioScreen(props) {
   return (
     <View style={styles.container}>
       {/* ----------------------------------- Affichage du Header -------------------------------------- */}
-      <Header
-        containerStyle={{ backgroundColor: '#2c2c2c' }}
-        leftComponent={<Button title='Mes Favoris' buttonStyle={{ width: 130, color: '#fff', backgroundColor: '#2c2c2c' }} onPress={() => props.navigation.navigate('WishListScreen')} />}
-        rightComponent={<Button title='Déconnexion' buttonStyle={{ width: 130, color: '#fff', backgroundColor: '#2c2c2c' }} onPress={() => {props.addToken(null); props.navigation.navigate('HomePageScreen')}} />}
+      <Header containerStyle={{ backgroundColor: '#A1A1A1' }}
+        leftComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="home" size={33} color="black"
+                      onPress={() => props.navigation.navigate('DashboardScreen')} />}
+        centerComponent={{ text: 'PORTEFEUILLE', style: { color: '#fff', fontSize: 16, marginTop: 10 } }}
+        rightComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="logout" size={30} color="black"
+                      onPress={() => {props.addToken(null); props.navigation.navigate('HomePageScreen')}} />}
       />
 
       {/* ----------------------------------- Affichage du Nom du portefeuille -------------------------------------- */}
       <Text h4 style={{ textAlign: 'center', fontWeight: 'bold', marginTop: 15, marginBottom: 15 }}>
-        Portefeuille {"\n"}{dataBDD.name}
+        {dataBDD.name}
       </Text>
               <ScrollView>
 
                 {/* ----------------------------------- Affichage du Graphique -------------------------------------- */}
                 <Text style={{alignSelf:'center', fontSize: 16}}>Graphique <Entypo name="area-graph" size={15} color="black" /></Text>
-                <Card containerStyle={{ marginTop: 15, marginBottom: 30, display: 'flex', alignItems: 'center'}}>
+                <Card containerStyle={{ borderRadius: 10, marginTop: 15, marginBottom: 30, display: 'flex', alignItems: 'center'}}>
                   {graph}
                 </Card>
 
                 {/* --------------------------------- Affichage des Performances ------------------------------------ */}
                 <Text style={{alignSelf:'center', fontSize: 16}}>Performances <Ionicons name="rocket-outline" size={15} color="black" /></Text>
-                <Card containerStyle={{ marginTop: 15, marginBottom: 30 }}>
+                <Card containerStyle={{ borderRadius: 10, marginTop: 15, marginBottom: 30 }}>
                   <Text style={{ fontSize: 16 }}>6 mois :  <Text style={{color:'green'}}>{perf6M} %</Text></Text>
                   <Text style={{ fontSize: 16 }}>1 an :  <Text style={{color:'green'}}>{dataBDD.perf1} </Text></Text>
                   <Text style={{ fontSize: 16 }}>2 ans :  <Text style={{color:'green'}}>{dataBDD.perf2}</Text></Text>
@@ -294,7 +297,7 @@ function PortfolioScreen(props) {
 
                 {/* -------------------------- Affichage de la description du portefeuille -------------------------- */}
                 <Text style={{alignSelf:'center', fontSize: 16}}>Description <MaterialIcons name="description" size={15} color="black" /></Text>
-                <Card containerStyle={{ marginTop: 15, marginBottom: 30 }}>
+                <Card containerStyle={{ borderRadius: 10, marginTop: 15, marginBottom: 30 }}>
                   <Text style={{textAlign: 'justify', fontSize: 16}}>{dataBDD.description1} {"\n"}</Text>
                   <Text style={{textAlign: 'justify', fontSize: 16}}>{dataBDD.description2} {"\n"}</Text>
                   <Text style={{textAlign: 'justify', fontSize: 16}}>{dataBDD.description3} {"\n"}</Text>
@@ -318,7 +321,7 @@ function PortfolioScreen(props) {
           {ButtonVisible}
 
           {/* ------------------------------ Affichage du bouton "retour aux favoris" --------------------------------- */}
-          <Button buttonStyle={{ backgroundColor: '#fff', width: 300, height: 50, alignSelf: 'center', borderColor: 'black'}}
+          <Button buttonStyle={{ borderRadius: 20, backgroundColor: '#fff', width: 300, height: 50, alignSelf: 'center', borderColor: 'black'}}
             title="Retour"
             titleStyle={{ color: "black" }}
             type="outline"
@@ -327,7 +330,7 @@ function PortfolioScreen(props) {
         </View>
 
         {/* ------------------ Affichage de la popup avec confirmation enregistrement portefeuille --------------------- */}
-        <Overlay isVisible={visible} width="auto" height="auto" overlayStyle={{ width: '80%',alignItems: 'center' }}>
+        <Overlay isVisible={visible} width="auto" height="auto" overlayStyle={{ width: '80%',alignItems: 'center', borderRadius: 20 }}>
 
           <FontAwesome5 style={{ marginTop: 30, marginBottom: 20 }}
             name="medal"
@@ -339,7 +342,7 @@ function PortfolioScreen(props) {
           <Text style={{ textAlign: 'center', marginTop: 15, fontSize: 16 }}>Votre stratégie est enregistrée !</Text>
 
           {/*Bouton retour vers Mes Favoris + disparition du popup*/}
-          <Button buttonStyle={{ backgroundColor: '#e1191d', width: 100, alignSelf: 'center', borderColor: 'black', marginTop:20, marginBottom: 20}}
+          <Button buttonStyle={{ borderRadius: 50, backgroundColor: '#e1191d', width: 70, alignSelf: 'center', borderColor: 'black', marginTop:20, marginBottom: 20}}
             title="ok"
             titleStyle={{ color: "#fff" }}
             type="solid"

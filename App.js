@@ -12,6 +12,7 @@ import IntroductionScreen from "./screens/IntroductionScreen"
 import PortfolioScreen from "./screens/PortfolioScreen"
 import StrategyListScreen from "./screens/StrategyListScreen"
 import WishListScreen from "./screens/WishListScreen"
+import DashboardScreen from "./screens/DashboardScreen"
 
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ export default function App() {
           <Stack.Screen name="PortfolioScreen" component={ PortfolioScreen } />
           <Stack.Screen name="StrategyListScreen" component={ StrategyListScreen } />
           <Stack.Screen name="WishListScreen" component={ WishListScreen } />
+          <Stack.Screen name="DashboardScreen" component={ DashboardScreen } />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

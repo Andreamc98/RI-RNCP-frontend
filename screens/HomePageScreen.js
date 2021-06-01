@@ -3,7 +3,6 @@ import { StyleSheet, View, Image } from 'react-native'
 import { Text, Overlay, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-
 function HomePageScreen(props) {
   // ------------------------------------- ETATS Overlay -------------------------------------
   const [signUpVisible, setSignUpVisible] = useState(false);
@@ -64,8 +63,13 @@ function HomePageScreen(props) {
     if (body.result == true) {
       // Enregistrement du token dans le store (dispatch - ligne 186)
       props.addToken(body.token)
+      
       // Redirection vers la page WishListScreen
-      props.navigation.navigate('WishListScreen')
+      // props.navigation.navigate('WishListScreen')
+
+      // Redirection vers la page DashboardScreen
+      props.navigation.navigate('DashboardScreen')
+
       // Initialisation des messages d'erreurs vides lors du chargement de la page
       setErrorsSignIn([])
       setErrorsSignUp([])
@@ -109,30 +113,27 @@ function HomePageScreen(props) {
 
     <View style={styles.container}>
 
-      <Text h1 style={styles.title}>Rocket Investing</Text>
-
       <Text style={styles.text}>L'application boursière qui facilite vos investissements à long terme</Text>
-
-      <Image source={require('../assets/Rocket_logo.png')} style={styles.image} />
+      <Image source={require('../assets/RI-logo.jpg')} style={styles.image} />
 
       <View style={{ marginBottom: 70 }}>
 
         {/* ----------------------------------- BOUTON SIGN UP -------------------------------------- */}
         <Button
-          buttonStyle={{ backgroundColor: "#e1191d", marginBottom: 15, alignItems: 'baseline', width: 250, height: 50, alignSelf: 'center' }}
+          buttonStyle={{ borderRadius: 20, backgroundColor: "#e1191d", marginBottom: 15, alignItems: 'baseline', width: 250, height: 50, alignSelf: 'center' }}
           title="Sign Up"
           titleStyle={{ paddingTop: 5 }}
           onPress={() => setSignUpVisible(true)}
         />
-        {/* ----------------------------------- Overlay Sign In -------------------------------------- */}
-        <Overlay isVisible={signUpVisible} overlayStyle={{ marginTop: -60, alignItems: 'center', justifyContent: 'center', width: 300, height: 350 }} onBackdropPress={toggleOverlaySignUp}>
+        {/* ----------------------------------- Overlay Sign Up -------------------------------------- */}
+        <Overlay isVisible={signUpVisible} overlayStyle={{ borderRadius: 20, marginTop: -60, alignItems: 'center', justifyContent: 'center', width: 300, height: 350 }} onBackdropPress={toggleOverlaySignUp}>
           <Text h4>Sign Up</Text>
           <Text>Entrez votre nom et mot de passe</Text>
           <Input containerStyle={{ marginTop: 30, width: 200 }} placeholder='John' onChangeText={(val) => setSignUpUsername(val)} />
           <Input containerStyle={{ width: 200 }} secureTextEntry={true} placeholder='*********' onChangeText={(val) => setSignUpPassword(val)} />
           {errorsSignUpMsg}
           <Button
-            buttonStyle={{ backgroundColor: "#e1191d", marginTop: 40, width: 80, height: 50, alignSelf: 'center' }}
+            buttonStyle={{ borderRadius: 50, backgroundColor: "#e1191d", marginTop: 40, width: 80, height: 50, alignSelf: 'center' }}
             title="Go"
             onPress={() => handleSubmitSignUp()}
           />
@@ -141,24 +142,27 @@ function HomePageScreen(props) {
         {/* ----------------------------------- BOUTON SIGN IN -------------------------------------- */}
         <Button
           type="outline"
-          buttonStyle={{ backgroundColor: '#fff', width: 250, height: 50, alignSelf: 'center', borderColor: '#e1191d' }}
+          buttonStyle={{ borderRadius: 20, backgroundColor: '#fff', width: 250, height: 50, alignSelf: 'center', borderColor: '#e1191d' }}
           title="Sign In"
           titleStyle={{ color: '#e1191d' }}
           onPress={() => setSignInVisible(true)}
         />
-        {/* ----------------------------------- Overlay Sign Up -------------------------------------- */}
-        <Overlay isVisible={signInVisible} overlayStyle={{ marginTop: -60, alignItems: 'center', justifyContent: 'center', width: 300, height: 350 }} onBackdropPress={toggleOverlaySignIn}>
+        {/* ----------------------------------- Overlay Sign In -------------------------------------- */}
+        
+
+        <Overlay isVisible={signInVisible} overlayStyle={{ borderRadius: 20, marginTop: -60, alignItems: 'center', justifyContent: 'center', width: 300, height: 350 }} onBackdropPress={toggleOverlaySignIn}>
           <Text h4>Sign In</Text>
           <Text>Entrez votre nom et mot de passe</Text>
           <Input containerStyle={{ marginTop: 30, width: 200 }} placeholder='John' onChangeText={(val) => setSignInUsername(val)} />
           <Input containerStyle={{ width: 200 }} secureTextEntry={true} placeholder='*********' onChangeText={(val) => setSignInPassword(val)} />
           {errorsSignInMsg}
           <Button
-            buttonStyle={{ backgroundColor: "#e1191d", marginTop: 40, width: 80, height: 50, alignSelf: 'center' }}
+            buttonStyle={{ borderRadius: 50, backgroundColor: "#e1191d", marginTop: 40, width: 80, height: 50, alignSelf: 'center' }}
             title="Go"
-            onPress={() => { handleSubmitSignIn(); errorsSignIn }}
-          />
+            onPress={() => handleSubmitSignIn()}
+          />   
         </Overlay>
+              
       </View>
 
     </View>
@@ -174,22 +178,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  title: {
-    marginTop: 20,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
   text: {
-    marginTop: -20,
-    marginLeft: 75,
-    marginRight: 75,
+    marginTop: 50,
+    marginLeft: 25,
+    marginRight: 25,
     textAlign: 'center',
-    fontSize: 18
+    fontSize: 21,
+    fontWeight: 'bold',
   },
   image: {
     alignSelf: 'center',
-    width: 300,
-    height: 300
+    resizeMode: "stretch",
+    height: 160,
+    width: 320,
   }
 })
 
