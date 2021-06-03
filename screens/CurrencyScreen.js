@@ -6,22 +6,21 @@ import RNPickerSelect from 'react-native-picker-select'
 import { AntDesign } from '@expo/vector-icons';
 
 function CurrencyScreen(props) {
-  const [dataAPI, setDataAPI] = useState({});
   const [deviseA, setDeviseA] = useState("EUR");
   const [amountA, setAmountA] = useState(1);
   const [amountB, setAmountB] = useState(0);
   const [deviseB, setDeviseB] = useState("EUR");
 
-    // ----------------------------- Appel à l'API Bourse ----------------------------- //
-  // Pour récupéartion des données boursières
+  // ----------------------------- Appel à l'API Bourse ----------------------------- //
+  // Pour récupéartion des données boursières (Currency)
   useEffect(() => {
     const findAPI = async () => {
         const API = await fetch(`https://finnhub.io/api/v1/forex/rates?base=${deviseA}&token=c2oemgqad3i8sitlsfbg`)
         const body = await API.json()
-        setDataAPI(body)
 
+        // récupéartion des données de change des devises pour affichage
         if(deviseB === "EUR"){
-          setAmountB(Math.round(body.quote.EUR * 100) / 100)
+          setAmountB(Math.round(body.quote.EUR * 100) / 100) // Montant des devises (chiffre arrondi)
         } else if(deviseB === "USD"){
           setAmountB(Math.round(body.quote.USD * 100) / 100)
         } else if(deviseB === "GBP"){
@@ -48,14 +47,14 @@ function CurrencyScreen(props) {
     }
   }, [deviseA, deviseB])
 
-  // Condition de vérification si l'état amountA est un nombre
+  // Condition de vérification et affichage si l'état amountA est un nombre sinon afficher "?"
   if (isNaN(amountA) == true){
     var amountA1 = "?"
   } else {
     var amountA1 = amountA;
   }
 
-  // Condition de vérification si l'état amountA est un nombre
+  // Condition de vérification et affichage si l'état amountA est un nombre sinon afficher "?"
   if (isNaN(amountA) == true){
     var addAmount = "?"
   } else {
@@ -69,7 +68,6 @@ function CurrencyScreen(props) {
   // ----------------------------- RETURN -----------------------------//
   return (
     <View style={styles.container}>
-        
         {/* ----------------------------------- Affichage du Header -------------------------------------- */}
         <Header containerStyle={{ backgroundColor: '#A1A1A1' }}
             leftComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="home" size={33} color="black"
@@ -82,12 +80,14 @@ function CurrencyScreen(props) {
         <View style={{alignSelf: "center"}}>
             <Text style={{ fontSize: 22, paddingBottom: 15, textAlign: 'center', marginTop: 20}}>Taux de change devises</Text>
 
-            <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>Montant :</Text>
+        {/* ----------------------------------- Affichage du montant en € -------------------------------------- */}
+            <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>Entrer le montant :</Text>
             <Input containerStyle={ styles.amount } inputContainerStyle={{alignItems: "center"}} placeholder='1.00€' onChangeText={(val) => setAmountA(val)} />
 
+        {/* ----------------------------------- Sélecteur de la devise -------------------------------------- */}
             <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>De :</Text>
             <RNPickerSelect
-                placeholder={{ label: 'Selectionner votre devise', value: 'EUR' }}
+                placeholder={{ label: 'Selectionner votre devise', value: 'null' }}
                 style={{ ...pickerSelectStyles }}
                 onValueChange={(value) => {console.log(value); setDeviseA(value)}}
                 items={[
@@ -103,9 +103,10 @@ function CurrencyScreen(props) {
                 ]}
             />
 
+        {/* ----------------------------------- Sélecteur de la devise -------------------------------------- */}
             <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>Vers :</Text>
             <RNPickerSelect
-                placeholder={{ label: 'Selectionner votre devise', value: 'EUR' }}
+                placeholder={{ label: 'Selectionner votre devise', value: 'null' }}
                 style={{ ...pickerSelectStyles }}
                 onValueChange={(value) => {console.log(value); setDeviseB(value)}}
                 items={[
@@ -122,11 +123,13 @@ function CurrencyScreen(props) {
             />
         </View>
 
+        {/* ----------------------------------- Affichage du change de devise en temps réel -------------------------------------- */}
         <Card containerStyle={{borderRadius: 20, height:150, width: 300, marginTop:50, alignSelf:"center" }} >
             <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center", marginTop: 10 }}>Exchange au {now} {"\n"}</Text>
             <Text style={{ fontSize: 18, alignSelf: "center", marginTop: 10 }}>{amountA1} {deviseA} = {addAmount} {deviseB}</Text>
         </Card>
         
+        {/* ----------------------------------- Bouton "retour" -------------------------------------- */}
         <View style={{marginTop: 50}}>
             <Button
             buttonStyle={{ borderRadius: 20, backgroundColor: '#fff', width: 300, height: 50, alignSelf: 'center', borderColor: '#e1191d' }}
@@ -145,8 +148,6 @@ function CurrencyScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'space-around',
-    // alignItems: 'center',
     backgroundColor: '#E7E6E6',
   },
   amount:{
