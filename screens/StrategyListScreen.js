@@ -260,10 +260,7 @@ function StrategyListScreen(props) {
       <RNPickerSelect
         placeholder={{ label: 'Sélection...', value: 'null' }}
         style={{ ...pickerSelectStyles }}
-        onValueChange={ (value) => {
-          setStrategyValue(value)
-          handleStrategy(value)
-        }}
+        onValueChange={ (value) => { setStrategyValue(value); handleStrategy(value) }}
         items={[
           { label: "Stratégie ACTIVE", value: "active" },
           { label: "Stratégie PASSIVE", value: "passive" },

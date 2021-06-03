@@ -7,23 +7,64 @@ import { AntDesign } from '@expo/vector-icons';
 
 function CurrencyScreen(props) {
   const [dataAPI, setDataAPI] = useState({});
-  const [country, setCountry] = useState("EUR");
-  const [amount, setAmount] = useState(1);
+  const [deviseA, setDeviseA] = useState("EUR");
+  const [amountA, setAmountA] = useState(1);
+  const [amountB, setAmountB] = useState(0);
+  const [deviseB, setDeviseB] = useState("EUR");
 
     // ----------------------------- Appel à l'API Bourse ----------------------------- //
   // Pour récupéartion des données boursières
   useEffect(() => {
     const findAPI = async () => {
-        const API = await fetch(`https://finnhub.io/api/v1/forex/rates?base=${country}&token=c2oemgqad3i8sitlsfbg`)
+        const API = await fetch(`https://finnhub.io/api/v1/forex/rates?base=${deviseA}&token=c2oemgqad3i8sitlsfbg`)
         const body = await API.json()
         setDataAPI(body)
-         }
-    if(country) {    // Condition pour valider la présence des données de la devise du pays
+
+        if(deviseB === "EUR"){
+          setAmountB(Math.round(body.quote.EUR * 100) / 100)
+        } else if(deviseB === "USD"){
+          setAmountB(Math.round(body.quote.USD * 100) / 100)
+        } else if(deviseB === "GBP"){
+          setAmountB(Math.round(body.quote.GBP * 100) / 100)
+        } else if(deviseB === "CAD"){
+          setAmountB(Math.round(body.quote.CAD * 100) / 100)
+        } else if(deviseB === "AUD"){
+          setAmountB(Math.round(body.quote.AUD * 100) / 100)
+        } else if(deviseB === "CHF"){
+          setAmountB(Math.round(body.quote.CHF * 100) / 100)
+        } else if(deviseB === "JPY"){
+          setAmountB(Math.round(body.quote.JPY * 100) / 100)
+        } else if(deviseB === "CNY"){
+          setAmountB(Math.round(body.quote.CNY * 100) / 100)
+        } else if(deviseB === "AED"){
+          setAmountB(Math.round(body.quote.AED * 100) / 100)
+        } else {
+          setAmountB(Math.round(body.quote.EUR * 100) / 100)
+        }
+        
+      }
+    if(deviseA && deviseB) {    // Condition pour valider la présence des données de la devise du pays
     findAPI()
     }
-  }, [country])
+  }, [deviseA, deviseB])
 
-  console.log("dataAPI :", dataAPI)
+  // Condition de vérification si l'état amountA est un nombre
+  if (isNaN(amountA) == true){
+    var amountA1 = "?"
+  } else {
+    var amountA1 = amountA;
+  }
+
+  // Condition de vérification si l'état amountA est un nombre
+  if (isNaN(amountA) == true){
+    var addAmount = "?"
+  } else {
+    var addAmount = amountA * amountB; // Calcul montant total * currency exchange
+  }
+
+
+  var now = new Date();  // date du jour
+  now = now.toLocaleDateString();  // tranforme la date en xx/xx/2021
 
   // ----------------------------- RETURN -----------------------------//
   return (
@@ -42,13 +83,13 @@ function CurrencyScreen(props) {
             <Text style={{ fontSize: 22, paddingBottom: 15, textAlign: 'center', marginTop: 20}}>Taux de change devises</Text>
 
             <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>Montant :</Text>
-            <Input containerStyle={ styles.amount } inputContainerStyle={{alignItems: "center"}} placeholder='1.00€' onChangeText={(val) => setAmount(val)} />
+            <Input containerStyle={ styles.amount } inputContainerStyle={{alignItems: "center"}} placeholder='1.00€' onChangeText={(val) => setAmountA(val)} />
 
             <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>De :</Text>
             <RNPickerSelect
                 placeholder={{ label: 'Selectionner votre devise', value: 'EUR' }}
                 style={{ ...pickerSelectStyles }}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => {console.log(value); setDeviseA(value)}}
                 items={[
                     { label: 'EUR - Euro', value: 'EUR' },
                     { label: 'USD - Dollar US', value: 'USD' },
@@ -56,7 +97,7 @@ function CurrencyScreen(props) {
                     { label: 'CAD - Dollar Canadien', value: 'CAD' },
                     { label: 'AUD - Dollar Australien', value: 'AUD' },
                     { label: 'CHF - Franc Suisse', value: 'CHF' },
-                    { label: 'JPY - Yen Japonais', value: 'CHF' },
+                    { label: 'JPY - Yen Japonais', value: 'JPY' },
                     { label: 'CNY - Yuan Chinois', value: 'CNY' },
                     { label: 'AED - Dirham EAU', value: 'AED' },
                 ]}
@@ -66,7 +107,7 @@ function CurrencyScreen(props) {
             <RNPickerSelect
                 placeholder={{ label: 'Selectionner votre devise', value: 'EUR' }}
                 style={{ ...pickerSelectStyles }}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => {console.log(value); setDeviseB(value)}}
                 items={[
                     { label: 'EUR - Euro', value: 'EUR' },
                     { label: 'USD - Dollar US', value: 'USD' },
@@ -74,15 +115,16 @@ function CurrencyScreen(props) {
                     { label: 'CAD - Dollar Canadien', value: 'CAD' },
                     { label: 'AUD - Dollar Australien', value: 'AUD' },
                     { label: 'CHF - Franc Suisse', value: 'CHF' },
-                    { label: 'JPY - Yen Japonais', value: 'CHF' },
+                    { label: 'JPY - Yen Japonais', value: 'JPY' },
                     { label: 'CNY - Yuan Chinois', value: 'CNY' },
                     { label: 'AED - Dirham EAU', value: 'AED' },
                 ]}
             />
         </View>
 
-        <Card containerStyle={{borderRadius: 20, width: 300, marginTop:50, alignSelf:"center" }} >
-            <Text style={{ fontSize: 16, alignSelf: "center", marginTop: 10 }}>Exchange = ???</Text>
+        <Card containerStyle={{borderRadius: 20, height:150, width: 300, marginTop:50, alignSelf:"center" }} >
+            <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center", marginTop: 10 }}>Exchange au {now} {"\n"}</Text>
+            <Text style={{ fontSize: 18, alignSelf: "center", marginTop: 10 }}>{amountA1} {deviseA} = {addAmount} {deviseB}</Text>
         </Card>
         
         <View style={{marginTop: 50}}>
