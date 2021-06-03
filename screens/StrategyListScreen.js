@@ -105,19 +105,6 @@ function StrategyListScreen(props) {
           {/* // Wallet Name */}
           <View style={ styles.profilContainer }>
             <Text style={ styles.portefeuil }>{ profilName[0] }</Text>
-            {/* <Button
-              title="détails"
-              buttonStyle={{
-                backgroundColor: '#e1191d',
-                width: 80,
-                height: 50,
-                borderRadius: 10,
-              }}
-              onPress={ () => {
-                props.navigation.navigate('PortfolioScreen');
-                handleUniqueName(profilName[0])
-              }}
-            /> */}
             <AntDesign style={{marginLeft: 3}}
                 name="rightsquare" 
                 size={50} 
@@ -174,24 +161,12 @@ function StrategyListScreen(props) {
         {/* // Wallet Name */}
         <View style={ styles.profilContainer }>
           <Text style={ styles.portefeuil }>{ profilName[1] }</Text>
-          {/* <Button
-            title="détails"
-            buttonStyle={{
-              backgroundColor: '#e1191d',
-              width: 80,
-              height: 50
-            }}
-            onPress={ () => {
-                props.navigation.navigate('PortfolioScreen');
-                handleUniqueName(profilName[1])
-              }}
-          /> */}
           <AntDesign style={{marginLeft: 3}}
                 name="rightsquare" 
                 size={50} 
                 color="#e1191d" 
                 onPress={ () => { props.navigation.navigate('PortfolioScreen');
-                                  handleUniqueName(profilName[0])
+                                  handleUniqueName(profilName[1])
                                 }}
           />
         </View>
@@ -242,24 +217,12 @@ function StrategyListScreen(props) {
         {/* // Wallet Name */}
         <View style={ styles.profilContainer }>
           <Text style={ styles.portefeuil }>{ profilName[2] }</Text>
-          {/* <Button
-            title="détails"
-            buttonStyle={{
-              backgroundColor: '#e1191d',
-              width: 80,
-              height: 50,
-            }}
-            onPress={ () => {
-                props.navigation.navigate('PortfolioScreen');
-                handleUniqueName(profilName[2])
-              }}
-          /> */}
           <AntDesign style={{marginLeft: 3}}
                 name="rightsquare" 
                 size={50} 
                 color="#e1191d" 
                 onPress={ () => { props.navigation.navigate('PortfolioScreen');
-                                  handleUniqueName(profilName[0])
+                                  handleUniqueName(profilName[2])
                                 }}
           />
         </View>
@@ -295,10 +258,7 @@ function StrategyListScreen(props) {
 
       {/* // Select Strategy */}
       <RNPickerSelect
-        placeholder={{
-          label: 'Sélection...',
-          value: 'null'
-        }}
+        placeholder={{ label: 'Sélection...', value: 'null' }}
         style={{ ...pickerSelectStyles }}
         onValueChange={ (value) => {
           setStrategyValue(value)
@@ -355,7 +315,7 @@ function StrategyListScreen(props) {
         title="Retour"
         titleStyle={{ color: '#e1191d' }}
         type="outline"
-        onPress={ () => props.navigation.navigate('WishListScreen') }
+        onPress={ () => props.navigation.navigate('DashboardScreen') }
       />
     </View>
   )

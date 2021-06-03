@@ -127,7 +127,7 @@ function HomePageScreen(props) {
         />
         {/* ----------------------------------- Overlay Sign Up -------------------------------------- */}
         <Overlay isVisible={signUpVisible} overlayStyle={{ borderRadius: 20, marginTop: -60, alignItems: 'center', justifyContent: 'center', width: 300, height: 350 }} onBackdropPress={toggleOverlaySignUp}>
-          <Text h4>Sign Up</Text>
+          <Text h4>Sign Up{"\n"}</Text>
           <Text>Entrez votre nom et mot de passe</Text>
           <Input containerStyle={{ marginTop: 30, width: 200 }} placeholder='John' onChangeText={(val) => setSignUpUsername(val)} />
           <Input containerStyle={{ width: 200 }} secureTextEntry={true} placeholder='*********' onChangeText={(val) => setSignUpPassword(val)} />
@@ -151,7 +151,7 @@ function HomePageScreen(props) {
         
 
         <Overlay isVisible={signInVisible} overlayStyle={{ borderRadius: 20, marginTop: -60, alignItems: 'center', justifyContent: 'center', width: 300, height: 350 }} onBackdropPress={toggleOverlaySignIn}>
-          <Text h4>Sign In</Text>
+          <Text h4>Sign In{"\n"}</Text>
           <Text>Entrez votre nom et mot de passe</Text>
           <Input containerStyle={{ marginTop: 30, width: 200 }} placeholder='John' onChangeText={(val) => setSignInUsername(val)} />
           <Input containerStyle={{ width: 200 }} secureTextEntry={true} placeholder='*********' onChangeText={(val) => setSignInPassword(val)} />
@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 21,
     fontWeight: 'bold',
+    color: "#777777",
   },
   image: {
     alignSelf: 'center',

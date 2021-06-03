@@ -325,7 +325,7 @@ function PortfolioScreen(props) {
             title="Retour"
             titleStyle={{ color: "black" }}
             type="outline"
-            onPress={() => props.navigation.navigate('WishListScreen')}
+            onPress={() => props.navigation.navigate('DashboardScreen')}
           />
         </View>
 

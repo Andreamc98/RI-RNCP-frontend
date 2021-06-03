@@ -27,7 +27,7 @@ function DashboardScreen(props) {
         <Text style={styles.titleText}>Bonjour {dataUsers.username}</Text>
         <Text style={styles.titleDashboard}>Tableau de bord</Text>
         <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#7A25A4', backgroundColor: "#F2E2FA" }}>
+            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#7A25A4', backgroundColor: "#FDF9FF" }}>
                 <AntDesign style={{alignSelf: "center", color: '#7A25A4'}} name="areachart" size={50} color="black"
                 // Redirection vers la page StrategyListScreen
                 onPress={() => props.navigation.navigate('StrategyListScreen') }
@@ -38,7 +38,7 @@ function DashboardScreen(props) {
                 >
                 Stratégies</Text>
             </Card>
-            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#F2A324', backgroundColor: "#F7EDD2" }}>
+            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#F2A324', backgroundColor: "#FFFDF9" }}>
                 <FontAwesome style={{alignSelf: "center", color: '#F2A324'}} name="star" size={50} color="black"
                 // Redirection vers la page WishListScreen
                 onPress={() => props.navigation.navigate('WishListScreen') }
@@ -51,13 +51,27 @@ function DashboardScreen(props) {
             </Card>
         </View>
         <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#0DA41C', backgroundColor: "#D5FCD9" }}>
-                <MaterialCommunityIcons style={{alignSelf: "center", color: '#0DA41C'}} name="monitor-screenshot" size={50} color="black" />
-                <Text style={{ fontSize: 16, paddingTop: 10, color: '#0DA41C', fontWeight: "bold" }}>Screener</Text>
+            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#0DA41C', backgroundColor: "#FCFFF9" }}>
+                <MaterialCommunityIcons style={{alignSelf: "center", color: '#0DA41C'}} name="monitor-screenshot" size={50} color="black" 
+                // Redirection vers la page ScreenerScreen
+                onPress={() => props.navigation.navigate('ScreenerScreen') }
+                />
+                <Text style={{ fontSize: 16, paddingTop: 10, color: '#0DA41C', fontWeight: "bold" }}
+                // Redirection vers la page ScreenerScreen
+                onPress={() => props.navigation.navigate('ScreenerScreen') }
+                >
+                  Screener</Text>
             </Card>
-            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#3398EF', backgroundColor: "#EAF5FF"}}>
-                <MaterialCommunityIcons style={{alignSelf: "center", color: '#3398EF'}} name="currency-eur" size={50} color="black" />
-                <Text style={{ fontSize: 16, paddingTop: 10, color: '#3398EF', fontWeight: "bold" }}>Devises</Text>
+            <Card containerStyle={{ borderRadius: 20, width: 130, height:130 , marginTop: 0, marginBottom: 0 , alignItems: 'center', justifyContent: 'center', borderColor: '#3398EF', backgroundColor: "#F9FDFF"}}>
+                <MaterialCommunityIcons style={{alignSelf: "center", color: '#3398EF'}} name="currency-eur" size={50} color="black" 
+                // Redirection vers la page CurrencyScreen
+                onPress={() => props.navigation.navigate('CurrencyScreen') }                
+                />
+                <Text style={{ fontSize: 16, paddingTop: 10, color: '#3398EF', fontWeight: "bold" }}
+                // Redirection vers la page CurrencyScreen
+                onPress={() => props.navigation.navigate('CurrencyScreen') }                 
+                >
+                  Devises</Text>
             </Card>
         </View>
         <View style={{marginTop: 50, marginBottom: 60}}>

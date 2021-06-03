@@ -6,8 +6,6 @@ import { Button } from 'react-native-elements';
 function IntroductionScreen(props) {
   const [dataUsers, setdataUsers] = useState("");
 
-
-
 // ----------------------------- Ajout du prénom de l'utilisateur dans la page d'introduction -----------------------------//
   useEffect(() => {
     const findUsername = async () => {
@@ -18,7 +16,6 @@ function IntroductionScreen(props) {
     findUsername()
   }, [props.token])
 
-
   // ----------------------------- RETURN -----------------------------//
   return (
     <View style={styles.container}>
@@ -27,8 +24,8 @@ function IntroductionScreen(props) {
       <Text style={styles.paragraph}>    Cette application a été conçue pour faciliter l'investissements boursier des particuliers qui ne possèdent aucune connaissance en finance de marché.</Text>
       <Text style={styles.paragraph}>    Laissez-nous vous guider pas à pas dans la définition de votre stratégie boursière long terme et appliquez facilement nos conseils pour placer votre argent.</Text>
 
-      <View style={{marginBottom: 100}}>
-        <Button buttonStyle={{ backgroundColor: "#e1191d", marginBottom: 15, alignItems: 'baseline', width: 250, height: 50, alignSelf: 'center' }}
+      <View style={{marginBottom: 50}}>
+        <Button buttonStyle={{ borderRadius: 20, backgroundColor: "#e1191d", marginBottom: 20, alignItems: 'baseline', width: 300, height: 50, alignSelf: 'center' }}
           title="Accès aux portefeuilles"
           titleStyle={{ paddingTop: 5 }}
           type="solid"
@@ -37,7 +34,7 @@ function IntroductionScreen(props) {
 
         <Button
           type="outline"
-          buttonStyle={{ backgroundColor: '#fff', width: 250, height: 50, alignSelf: 'center', borderColor: '#e1191d' }}
+          buttonStyle={{ borderRadius: 20, backgroundColor: '#fff', width: 300, height: 50, alignSelf: 'center', borderColor: '#e1191d' }}
           title="Déconnexion"
           titleStyle={{ color: '#e1191d' }}
           onPress={() => { props.addToken(null);
@@ -79,7 +76,6 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
   },
 })
-
 
 function mapStateToProps(state) {
   return { token: state.token }

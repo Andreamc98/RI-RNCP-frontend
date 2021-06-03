@@ -13,7 +13,6 @@ function WishListScreen(props) {
 
   const isFocused = useIsFocused();
 
-
 // ----------------------------- Ajout du prénom de l'utilisateur dans la page d'introduction -----------------------------//
 
   useEffect(() => {
@@ -74,7 +73,7 @@ function WishListScreen(props) {
       <Header containerStyle={{ backgroundColor: '#A1A1A1' }}
         leftComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="home" size={33} color="black"
                       onPress={() => props.navigation.navigate('DashboardScreen')} />}
-        centerComponent={{ text: 'PORTEFEUILLE', style: { color: '#fff', fontSize: 16, marginTop: 10 } }}
+        centerComponent={{ text: 'MES FAVORIS', style: { color: '#fff', fontSize: 16, marginTop: 10 } }}
         rightComponent={<AntDesign style={{alignSelf: "center", color: '#fff', marginBottom: 10}} name="logout" size={30} color="black"
                       onPress={() => {props.addToken(null); props.navigation.navigate('HomePageScreen')}} />}
       />
