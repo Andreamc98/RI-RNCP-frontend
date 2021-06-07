@@ -162,10 +162,6 @@ const pickerSelectStyles = StyleSheet.create({
   },
 })
 
-function mapStateToProps(state) {
-  return { token: state.token }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     addToken: function (token) {
@@ -175,6 +171,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ScreenerScreen);
