@@ -13,7 +13,7 @@ function WishListScreen(props) {
 
   const isFocused = useIsFocused();
 
-// ----------------------------- Ajout du prénom de l'utilisateur dans la page d'introduction -----------------------------//
+// ----------------------------- Ajout du nom de l'utilisateur dans la page Whishlist -----------------------------//
 
   useEffect(() => {
     const findUsername = async () => {
@@ -40,6 +40,7 @@ function WishListScreen(props) {
       }
   }
 
+  // Pour affichages des portefeuilles enregistrés dans la whishlist suivant l'utilisateur sélectionné
   let portefeuille = [];
   if (dataPortofolio && dataUsers.result && isFocused) {
 
@@ -51,7 +52,7 @@ function WishListScreen(props) {
             title={data.name}
             titleStyle={{ color: "#0DA41C" }}
             type="outline"
-            onPress={() => { props.onSave(data.name); props.navigation.navigate('PortfolioScreen') }}
+            onPress={() => { props.onSave(data.name); props.navigation.navigate('PortfolioScreen') }} // renvoie vers le détail du portfeuille sélectionné
           />
           <Entypo style={{marginBottom: 10}}
             name="squared-cross"
@@ -86,7 +87,8 @@ function WishListScreen(props) {
         
         <View style={{}}>
 
-          {portefeuille}
+          {/* ------ Affichage des portfeuilles enregistrés ------ */}
+          {portefeuille} 
 
         </View>
         
@@ -94,6 +96,8 @@ function WishListScreen(props) {
       </Card>
 
       <View style={{marginBottom:50}}>
+
+        {/* ------ Ajout d'un portfeuille dans la wishlist ------ */}
         <Button buttonStyle={{ borderRadius: 20, backgroundColor: "#e1191d", marginBottom: 15, alignItems: 'baseline', width: 300, height: 50, alignSelf: 'center' }}
           icon={<AntDesign style={{ marginRight: 7 }} name="pluscircleo" size={25} color="white" />}
           title="Ajouter un nouveau produit"
@@ -101,6 +105,7 @@ function WishListScreen(props) {
           type="solid"
           onPress={() => props.navigation.navigate('StrategyListScreen')}
         />
+        {/* ------ Bouton de retour au Tableau de bord ------ */}
         <Button
           buttonStyle={{ borderRadius: 20, backgroundColor: '#fff', width: 300, height: 50, alignSelf: 'center', borderColor: '#e1191d' }}
           title="Retour"
@@ -146,16 +151,18 @@ const styles = StyleSheet.create({
   },
 })
 
-
+  // Récupération du token pour recherche le nom du User en BDD
 function mapStateToProps(state) {
   return { token: state.token }
 }
 
+  // enregistrement dans le store du nom du portefeuille
 function mapDispatchToProps(dispatch) {
   return {
     onSave: function (name) {
       dispatch({ type: 'saveWishlist', name : name })
     },
+  // supression du Token lors de la déconnexion 
     addToken: function (token) {
       dispatch({ type: 'saveToken', token: token })
     }

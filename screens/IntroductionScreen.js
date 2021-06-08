@@ -6,7 +6,7 @@ import { Button } from 'react-native-elements';
 function IntroductionScreen(props) {
   const [dataUsers, setdataUsers] = useState("");
 
-// ----------------------------- Ajout du prénom de l'utilisateur dans la page d'introduction -----------------------------//
+// ----------------------------- Ajout du nom de l'utilisateur dans la page d'introduction -----------------------------//
   useEffect(() => {
     const findUsername = async () => {
       const dataUsers = await fetch(`https://rocketinvesting.herokuapp.com/introduction?token=${props.token}`)
@@ -77,10 +77,13 @@ const styles = StyleSheet.create({
   },
 })
 
+
+// Récupération du token pour recherche le nom du User en BDD
 function mapStateToProps(state) {
   return { token: state.token }
 }
 
+// supression du Token lors de la déconnexion
 function mapDispatchToProps(dispatch) {
   return {
     addToken: function (token) {

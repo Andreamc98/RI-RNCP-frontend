@@ -9,7 +9,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 function DashboardScreen(props) {
   const [dataUsers, setdataUsers] = useState('');
 
-// ----------------------------- Ajout du prénom de l'utilisateur dans la page du Dashboard -----------------------------//
+// ----------------------------- Ajout du nom de l'utilisateur dans la page du Dashboard -----------------------------//
 
   useEffect(() => {
     const findUsername = async () => {
@@ -114,10 +114,12 @@ const styles = StyleSheet.create({
   },
 })
 
+// Récupération du token pour recherche le nom du User en BDD
 function mapStateToProps(state) {
   return { token: state.token }
 }
 
+// supression du Token lors de la déconnexion
 function mapDispatchToProps(dispatch) {
   return {
     addToken: function (token) {

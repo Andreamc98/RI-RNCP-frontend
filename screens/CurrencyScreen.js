@@ -181,6 +181,7 @@ const pickerSelectStyles = StyleSheet.create({
     },
   })
 
+// supression du Token lors de la déconnexion
 function mapDispatchToProps(dispatch) {
   return {
     addToken: function (token) {
